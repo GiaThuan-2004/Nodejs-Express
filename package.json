@@ -1,0 +1,26 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "back-end with express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiaThuan-2004/Nodejs-Express.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "author": "Gia Thuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GiaThuan-2004/Nodejs-Express/issues"
+  },
+  "homepage": "https://github.com/GiaThuan-2004/Nodejs-Express#readme",
+  "dependencies": {
+    "express": "5.0.1"
+  }
+}
