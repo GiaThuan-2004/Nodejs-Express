@@ -1,5 +1,5 @@
 import express, { Express } from "express"
-import { getCreateUserPage, getHomePage } from "../controllers/user-controller"
+import { getCreateUserPage, getHomePage, postCreatedUser } from "../controllers/user-controller"
 
 const router = express.Router()
 
@@ -7,6 +7,8 @@ const webRouter = (app: Express) => {
     router.get("/", getHomePage)
 
     router.get("/user", getCreateUserPage)
+
+    router.post("/create-user", postCreatedUser)
 
     router.get("/myLink", (req, res) => {
         res.send("This is new Link")
