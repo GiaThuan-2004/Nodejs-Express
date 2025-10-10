@@ -9,11 +9,15 @@ const PORT = process.env.PORT || 8080
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
-//router config
-webRouter(app)
+//config req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //static file config (css, img, js)
 app.use(express.static('public'))
+
+//router config
+webRouter(app)
 
 app.listen(8080, () => {
     console.log(`App is running on ${PORT}`)

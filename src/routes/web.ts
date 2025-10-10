@@ -14,7 +14,7 @@ const webRouter = (app: Express) => {
         res.send("This is new Link")
     })
 
-    app.use("/", router) //giong @RequestMapping (nhom cac url co phuc vu )
+    app.use("/", router) //giong @RequestMapping (nhom cac url co chuc nang giong nhau)
 }
 
 export default webRouter

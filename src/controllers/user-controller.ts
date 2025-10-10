@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { createUserService } from '../services/userService'
 
 const getHomePage = (req: Request, res: Response) => {
     return res.render('home')
@@ -14,7 +15,10 @@ const getCreateUserPage = (req: Request, res: Response) => {
 
 const postCreatedUser = (req: Request, res: Response) => {
     // chua nhan dc data phai config
-    console.log(req.body)
+    const { email, name, address } = req.body
+
+    createUserService(email, name, address)
+
     return res.redirect('/')
 }
 
