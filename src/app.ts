@@ -20,8 +20,6 @@ app.use(express.static('public'))
 //router config
 webRouter(app)
 
-getConnection()
-
 app.listen(8080, () => {
     console.log(`App is running on ${PORT}`)
 })
