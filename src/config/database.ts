@@ -5,7 +5,7 @@ const getConnection = async () => {
         port: 3306,
         host: 'localhost',
         user: 'root',
-        password: 'thuan2004',
+        password: process.env.password,
         database: 'nodejsdatabase',
     });
 

@@ -15,7 +15,7 @@ const createUserService = async (email: string, name: string, address: string) =
 }
 
 const getAllUserService = async () => {
-    const connection = await getConnection()
+    const connection = await getConnection();
 
     try {
         const [results, fields] = await connection.query(
@@ -28,4 +28,33 @@ const getAllUserService = async () => {
     }
 }
 
-export { createUserService, getAllUserService }
+const deleteUserApi = async (id: string) => {
+    const connection = await getConnection();
+
+    try {
+        const sql = 'DELETE FROM `users` WHERE `id` = ?';
+        const values = [id];
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result;
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const detailUserApi = async (id: string) => {
+    const connection = await getConnection()
+
+    try {
+        const sql = 'SELECT * FROM `users` WHERE `id` = ?';
+        const values = [id];
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result;
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+export { createUserService, getAllUserService, deleteUserApi, detailUserApi }

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { createUserService, getAllUserService } from 'services/userService'
+import { createUserService, deleteUserApi, detailUserApi, getAllUserService } from 'services/userService'
 
 const getHomePage = async (req: Request, res: Response) => {
 
@@ -23,7 +23,20 @@ const postCreatedUser = async (req: Request, res: Response) => {
 
     await createUserService(email, name, address);
 
-    return res.redirect('/')
+    return res.redirect('/');
 }
 
-export { getHomePage, getCreateUserPage, postCreatedUser }
+const postDeleteUser = async (req: Request, res: Response) => {
+    await deleteUserApi(req.params.id);
+
+    return res.redirect('/');
+}
+
+const getDetailUser = async (req: Request, res: Response) => {
+    const user = await detailUserApi(req.params.id);
+    return res.render('view-detail', {
+        user: user[0]
+    });
+}
+
+export { getHomePage, getCreateUserPage, postCreatedUser, postDeleteUser, getDetailUser }
