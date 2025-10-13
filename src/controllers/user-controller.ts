@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { createUserService, getAllUserService } from '../services/userService'
+import { createUserService, getAllUserService } from 'services/userService'
 
 const getHomePage = async (req: Request, res: Response) => {
 

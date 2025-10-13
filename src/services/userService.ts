@@ -1,4 +1,4 @@
-import getConnection from "../controllers/config/database"
+import getConnection from "config/database"
 
 const createUserService = async (email: string, name: string, address: string) => {
     const connection = await getConnection();

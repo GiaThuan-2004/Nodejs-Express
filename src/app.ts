@@ -1,7 +1,7 @@
 import express from "express"
 import 'dotenv/config'
 import webRouter from "./routes/web"
-import getConnection from "./controllers/config/database"
+import getConnection from "./config/database"
 
 const app = express()
 const PORT = process.env.PORT || 8080
