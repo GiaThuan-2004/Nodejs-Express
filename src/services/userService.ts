@@ -1,18 +1,18 @@
+import { prisma } from "config/client";
 import getConnection from "config/database"
 import { IUser } from "src/types/global";
 
+
 const createUserService = async (email: string, name: string, address: string) => {
-    const connection = await getConnection();
+    const newUser = await prisma.user.create({
+        data: {
+            name: name,
+            email: email,
+            address: address
+        }
+    })
 
-    try {
-        const sql = 'INSERT INTO `users`(`name`, `email`, address) VALUES (?, ?, ?)';
-        const values = [name, email, address];
-
-        const [result, fields] = await connection.execute(sql, values);
-        return result;
-    } catch (err) {
-        console.log(err)
-    }
+    return newUser
 }
 
 const getAllUserService = async () => {
@@ -20,7 +20,7 @@ const getAllUserService = async () => {
 
     try {
         const [results, fields] = await connection.query(
-            'SELECT * FROM `users`'
+            'SELECT * FROM `user`'
         );
         return results;
     } catch (err) {

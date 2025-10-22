@@ -22,8 +22,7 @@ const postCreatedUser = async (req: Request, res: Response) => {
     // chua nhan dc data phai config
     const { email, name, address } = req.body;
 
-    await createUserService(email, name, address);
-
+    const newUser = await createUserService(email, name, address);
     return res.redirect('/');
 }
 
