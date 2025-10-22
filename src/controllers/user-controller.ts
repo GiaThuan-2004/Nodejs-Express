@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
-import { createUserService, deleteUserApi, detailUserApi, getAllUserService } from 'services/userService'
+import { createUserService, deleteUserApi, detailUserApi, getAllUserService, updateUserApi } from 'services/userService'
+import { IUser } from 'src/types/global'
 
 const getHomePage = async (req: Request, res: Response) => {
 
@@ -39,4 +40,13 @@ const getDetailUser = async (req: Request, res: Response) => {
     });
 }
 
-export { getHomePage, getCreateUserPage, postCreatedUser, postDeleteUser, getDetailUser }
+const postUpdateUser = async (req: Request, res: Response) => {
+    const user: IUser = req.body;
+    await updateUserApi(user);
+    return res.redirect('/')
+}
+
+export {
+    getHomePage, getCreateUserPage, postCreatedUser,
+    postDeleteUser, getDetailUser, postUpdateUser
+}

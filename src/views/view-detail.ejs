@@ -14,12 +14,11 @@
 
     <div class="container"
         style="width: 600px; padding: 20px; margin: 20px auto; border: 1px solid #ccc; border-radius: 20px;">
-        <h3 style="text-align: center;">View user detail
-        </h3>
-        <form action="/create-user" method="post">
+        <h3 style="text-align: center;">View user detail</h3>
+        <form action="/update" method="post">
             <div class="mb-3">
                 <label class="form-label">Id</label>
-                <input disabled name="id" class="form-control" value="<%= user.id %>">
+                <input name="id" class="form-control" value="<%= user.id %>" readonly>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email address</label>
@@ -33,7 +32,7 @@
                 <label class="form-label">Address</label>
                 <input name="address" type="text" class="form-control" value="<%= user.address %>">
             </div>
-            <button type="submit" class="btn btn-warning">Create User</button>
+            <button type="submit" class="btn btn-warning">Update User</button>
         </form>
     </div>
 

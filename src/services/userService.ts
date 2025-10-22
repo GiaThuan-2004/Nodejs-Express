@@ -1,4 +1,5 @@
 import getConnection from "config/database"
+import { IUser } from "src/types/global";
 
 const createUserService = async (email: string, name: string, address: string) => {
     const connection = await getConnection();
@@ -43,7 +44,7 @@ const deleteUserApi = async (id: string) => {
 }
 
 const detailUserApi = async (id: string) => {
-    const connection = await getConnection()
+    const connection = await getConnection();
 
     try {
         const sql = 'SELECT * FROM `users` WHERE `id` = ?';
@@ -56,5 +57,20 @@ const detailUserApi = async (id: string) => {
     }
 }
 
+const updateUserApi = async (user: IUser) => {
+    const connection = await getConnection();
+    try {
+        const sql = 'UPDATE `users` SET `name` = ?, `email` = ?, address = ? WHERE `id` = ? LIMIT 1';
+        const values = [user.name, user.address, user.address, user.id];
 
-export { createUserService, getAllUserService, deleteUserApi, detailUserApi }
+        console.log(values)
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result;
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+export { createUserService, getAllUserService, deleteUserApi, detailUserApi, updateUserApi }

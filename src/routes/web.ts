@@ -1,5 +1,5 @@
 import express, { Express } from "express"
-import { getCreateUserPage, getDetailUser, getHomePage, postCreatedUser, postDeleteUser } from "controllers/user-controller"
+import { getCreateUserPage, getDetailUser, getHomePage, postCreatedUser, postDeleteUser, postUpdateUser } from "controllers/user-controller"
 
 const router = express.Router()
 
@@ -20,6 +20,8 @@ const webRouter = (app: Express) => {
     router.get("/myLink", (req, res) => {
         res.send("This is new Link")
     })
+
+    router.post('/update', postUpdateUser)
 
     app.use("/", router) //giong @RequestMapping (nhom cac url co chuc nang giong nhau)
 }
