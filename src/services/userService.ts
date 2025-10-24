@@ -1,5 +1,6 @@
 import { prisma } from "config/client";
 import getConnection from "config/database"
+import { name } from "ejs";
 import { IUser } from "src/types/global";
 
 
@@ -35,33 +36,27 @@ const deleteUserApi = async (id: string) => {
     }
 }
 
-const detailUserApi = async (id: string) => {
-    const connection = await getConnection();
+const detailUserApi = async (id: number) => {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: id
+        }
+    })
 
-    try {
-        const sql = 'SELECT * FROM `users` WHERE `id` = ?';
-        const values = [id];
-
-        const [result, fields] = await connection.execute(sql, values);
-        return result;
-    } catch (err) {
-        console.log(err)
-    }
+    return user
 }
 
 const updateUserApi = async (user: IUser) => {
-    const connection = await getConnection();
-    try {
-        const sql = 'UPDATE `users` SET `name` = ?, `email` = ?, address = ? WHERE `id` = ? LIMIT 1';
-        const values = [user.name, user.address, user.address, user.id];
-
-        console.log(values)
-
-        const [result, fields] = await connection.execute(sql, values);
-        return result;
-    } catch (err) {
-        console.log(err)
-    }
+    await prisma.user.update({
+        where: {
+            id: +user.id
+        },
+        data: {
+            email: user.email,
+            name: user.name,
+            address: user.address
+        }
+    })
 }
 
 

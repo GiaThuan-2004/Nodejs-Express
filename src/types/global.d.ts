@@ -3,7 +3,7 @@ interface IUser {
     id?: number,
     name: string,
     address: string,
-    address: string
+    email: string
 }
 
 export { IUser }

@@ -33,9 +33,9 @@ const postDeleteUser = async (req: Request, res: Response) => {
 }
 
 const getDetailUser = async (req: Request, res: Response) => {
-    const user = await detailUserApi(req.params.id);
+    const user = await detailUserApi(+req.params.id);
     return res.render('view-detail', {
-        user: user[0]
+        user: user
     });
 }
 
