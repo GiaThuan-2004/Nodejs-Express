@@ -22,18 +22,12 @@ const getAllUserService = async () => {
     return AllUSers;
 }
 
-const deleteUserApi = async (id: string) => {
-    const connection = await getConnection();
-
-    try {
-        const sql = 'DELETE FROM `users` WHERE `id` = ?';
-        const values = [id];
-
-        const [result, fields] = await connection.execute(sql, values);
-        return result;
-    } catch (err) {
-        console.log(err)
-    }
+const deleteUserApi = async (id: number) => {
+    await prisma.user.delete({
+        where: {
+            id: id
+        }
+    })
 }
 
 const detailUserApi = async (id: number) => {

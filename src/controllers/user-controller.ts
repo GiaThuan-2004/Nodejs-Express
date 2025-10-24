@@ -27,7 +27,7 @@ const postCreatedUser = async (req: Request, res: Response) => {
 }
 
 const postDeleteUser = async (req: Request, res: Response) => {
-    await deleteUserApi(req.params.id);
+    await deleteUserApi(+req.params.id);
 
     return res.redirect('/');
 }
