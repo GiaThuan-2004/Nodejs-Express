@@ -16,17 +16,9 @@ const createUserService = async (email: string, name: string, address: string) =
 }
 
 const getAllUserService = async () => {
-    const connection = await getConnection();
+    const AllUSers = await prisma.user.findMany();
 
-    try {
-        const [results, fields] = await connection.query(
-            'SELECT * FROM `user`'
-        );
-        return results;
-    } catch (err) {
-        console.log(err);
-        return [];
-    }
+    return AllUSers;
 }
 
 const deleteUserApi = async (id: string) => {
